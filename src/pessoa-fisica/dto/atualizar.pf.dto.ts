@@ -1,9 +1,12 @@
 import { EstadoCivil } from 'src/utils/estado-civil';
+import { Genero } from 'src/utils/genero';
 
 export class AtualizarPFDto {
   readonly pNome: string;
 
   readonly pCpf: number;
+
+  readonly pGenero: Genero;
 
   readonly pDataNasc: string;
 
@@ -17,7 +20,7 @@ export class AtualizarPFDto {
 
   readonly pRua: string;
 
-  readonly pNumero: string;
+  readonly pNumero: number;
 
   readonly pComplemento: string;
 

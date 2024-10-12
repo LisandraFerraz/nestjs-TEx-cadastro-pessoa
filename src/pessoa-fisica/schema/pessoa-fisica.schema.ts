@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { EstadoCivil } from 'src/utils/estado-civil';
+import { Genero } from 'src/utils/genero';
 
 @Schema({
   timestamps: true,
@@ -10,6 +11,9 @@ export class PessoaFisica {
 
   @Prop()
   pCpf: number;
+
+  @Prop()
+  readonly pGenero: Genero;
 
   @Prop()
   pDataNasc: string;
@@ -30,7 +34,7 @@ export class PessoaFisica {
   pRua: string;
 
   @Prop()
-  pNumero: string;
+  pNumero: number;
 
   @Prop()
   pComplemento: string;

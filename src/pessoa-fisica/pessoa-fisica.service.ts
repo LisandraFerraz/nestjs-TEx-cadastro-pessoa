@@ -11,8 +11,8 @@ export class PessoaFisicaService {
     private pfModel: mongoose.Model<PessoaFisica>,
   ) {}
 
-  async listarTodasPF(query: Query): Promise<PessoaFisica[]> {
-    const itemsPagina = Number(query.itemsPage);
+  async listarTodasPF(query: Query): Promise<any> {
+    const itemsPagina = Number(query.itemsPage) || 5;
     const paginaAtual = Number(query.page) || 1;
     const proximaPagina = itemsPagina * (paginaAtual - 1);
 
@@ -25,12 +25,19 @@ export class PessoaFisicaService {
         }
       : {};
 
+    const totalItems = await this.pfModel.find();
     const pessoas = await this.pfModel
       .find({ ...keyword })
       .limit(itemsPagina)
       .skip(proximaPagina);
 
-    return pessoas;
+    const paginacao = {
+      totalItems: totalItems.length,
+      itemsPagina: itemsPagina,
+      paginaAtual: paginaAtual,
+    };
+
+    return { pessoas, paginacao };
   }
 
   async cadastrarPF(pf: PessoaFisica): Promise<PessoaFisica> {
