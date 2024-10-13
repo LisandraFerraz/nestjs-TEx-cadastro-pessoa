@@ -19,6 +19,9 @@ export class CriarPFDto {
   readonly pTelefone: number;
 
   @IsNotEmpty()
+  readonly pCep: number;
+
+  @IsNotEmpty()
   readonly pCidade: string;
 
   @IsNotEmpty()

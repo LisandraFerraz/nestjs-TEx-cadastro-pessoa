@@ -12,6 +12,8 @@ export class AtualizarPFDto {
 
   readonly pTelefone: number;
 
+  readonly pCep: number;
+
   readonly pCidade: string;
 
   readonly pEstado: string;

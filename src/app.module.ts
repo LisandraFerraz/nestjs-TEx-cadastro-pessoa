@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { PessoaFisicaModule } from './pessoa-fisica/pessoa-fisica.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CepModule } from './cep/cep.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     }),
     MongooseModule.forRoot(process.env.DB_URI),
     PessoaFisicaModule,
+    CepModule,
   ],
   controllers: [AppController],
   providers: [AppService],

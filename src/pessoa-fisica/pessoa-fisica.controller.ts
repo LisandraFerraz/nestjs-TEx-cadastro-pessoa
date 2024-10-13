@@ -14,6 +14,7 @@ import { CriarPFDto } from './dto/criar-pf.dto';
 import { AtualizarPFDto } from './dto/atualizar.pf.dto';
 
 import { Query as ExpressQuery } from 'express-serve-static-core';
+import { ComboPessoas } from './schema/combo-pessoas.schema';
 
 @Controller('pessoa-fisica')
 export class PessoaFisicaController {
@@ -27,6 +28,11 @@ export class PessoaFisicaController {
   @Get('listar/:id')
   async listarPF(@Param('id') id: string): Promise<PessoaFisica> {
     return await this.pessoaFService.listarPessoa(id);
+  }
+
+  @Get('combo-pessoas')
+  async listaComboPessoas(): Promise<ComboPessoas[]> {
+    return await this.pessoaFService.listarComboPessoas();
   }
 
   @Post('criar')

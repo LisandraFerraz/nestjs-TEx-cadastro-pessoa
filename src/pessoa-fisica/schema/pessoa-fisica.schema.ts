@@ -13,13 +13,16 @@ export class PessoaFisica {
   pCpf: number;
 
   @Prop()
-  readonly pGenero: Genero;
+  pGenero: Genero;
 
   @Prop()
   pDataNasc: string;
 
   @Prop()
   pTelefone: number;
+
+  @Prop()
+  pCep: number;
 
   @Prop()
   pCidade: string;
@@ -49,7 +52,5 @@ export class PessoaFisica {
   pProfissao: string;
 }
 
-export type PessoaFisicaDocumen = PessoaFisica & Document;
+export type PessoaFisicaDocument = PessoaFisica & Document;
 export const PessoaFisicaSchema = SchemaFactory.createForClass(PessoaFisica);
-
-// Nome, CPF, RG, Data de Nascimento, Telefones, Endereço, E-mail, Estado Civil e etc

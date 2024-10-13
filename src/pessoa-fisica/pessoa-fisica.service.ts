@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { PessoaFisica } from './schema/pessoa-fisica.schema';
 import * as mongoose from 'mongoose';
 import { Query } from 'express-serve-static-core';
+import { ComboPessoas } from './schema/combo-pessoas.schema';
 
 @Injectable()
 export class PessoaFisicaService {
@@ -16,18 +17,18 @@ export class PessoaFisicaService {
     const paginaAtual = Number(query.page) || 1;
     const proximaPagina = itemsPagina * (paginaAtual - 1);
 
-    const keyword = query.keyword
+    const pNome = query.pNome
       ? {
           pNome: {
-            $regex: query.keyword,
+            $regex: query.pNome,
             $options: 'i',
           },
         }
       : {};
 
-    const totalItems = await this.pfModel.find();
+    const totalItems = await this.pfModel.find({ ...pNome });
     const pessoas = await this.pfModel
-      .find({ ...keyword })
+      .find({ ...pNome })
       .limit(itemsPagina)
       .skip(proximaPagina);
 
@@ -40,14 +41,32 @@ export class PessoaFisicaService {
     return { pessoas, paginacao };
   }
 
+  async listarComboPessoas(): Promise<ComboPessoas[]> {
+    const totalItems = await this.pfModel.find();
+
+    const comboPessoas: any = totalItems.map((p) => ({
+      pNome: p.pNome,
+      _id: p._id,
+    }));
+    return comboPessoas;
+  }
+
   async cadastrarPF(pf: PessoaFisica): Promise<PessoaFisica> {
     const response = await this.pfModel.create(pf);
     return response;
   }
 
-  async listarPessoa(id: string): Promise<PessoaFisica> {
-    const response = await this.pfModel.findById(id);
-    return response;
+  async listarPessoa(id: string): Promise<any> {
+    const pessoas = await this.pfModel.findById(id);
+
+    const paginacao = {
+      totalItems: 1,
+      itemsPagina: 1,
+      paginaAtual: 1,
+    };
+    const data = { pessoas: [pessoas], paginacao };
+
+    return data;
   }
 
   async atualizarPF(id: string, pf: PessoaFisica): Promise<PessoaFisica> {
