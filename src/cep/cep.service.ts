@@ -8,7 +8,6 @@ export class CepService {
     const res = await fetch(`https://brasilapi.com.br/api/cep/v1/${query.cep}`);
     const data = await res.json();
 
-    console.log(data);
     const endereco = {
       estado: data.state,
       cidade: data.city,

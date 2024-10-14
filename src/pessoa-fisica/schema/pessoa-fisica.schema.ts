@@ -10,7 +10,7 @@ export class PessoaFisica {
   pNome: string;
 
   @Prop()
-  pCpf: number;
+  pCpf: string;
 
   @Prop()
   pGenero: Genero;
@@ -19,10 +19,10 @@ export class PessoaFisica {
   pDataNasc: string;
 
   @Prop()
-  pTelefone: number;
+  pTelefone: string;
 
   @Prop()
-  pCep: number;
+  pCep: string;
 
   @Prop()
   pCidade: string;
@@ -37,7 +37,7 @@ export class PessoaFisica {
   pRua: string;
 
   @Prop()
-  pNumero: number;
+  pNumero: string;
 
   @Prop()
   pComplemento: string;
