@@ -1,16 +1,13 @@
 
-# User Register CRUD #
+# User Register CRUD - API #
 
 The project allows you to create, read, update and delete user informations.
-
-The goal is to create an API using Nest and integrating it to the front-end, which was done with React.
-
-![APP Prototype](https://github.com/user-attachments/assets/be822147-6934-4141-9948-4cdf6273f247)
+This API was done using NestJs.
 
 
 ## Running locally
 
-Fork, install and run the front-end (current) and the API ([available here](https://github.com/LisandraFerraz/nestjs-TEx-cadastro-pessoa)) projects locally with NPM.
+Fork, install and run the front-end ([available here](https://github.com/LisandraFerraz/react-TEx-cadastro-pessoa))  and the API (current) projects locally with NPM.
 
 ```bash
     npm install
